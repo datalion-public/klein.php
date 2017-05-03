@@ -703,7 +703,9 @@ class Klein
         $this->callAfterDispatchCallbacks();
 
         if ($send_response && !$this->response->isSent()) {
-            $this->response->send();
+            if (!empty($this->response->body())) {
+                $this->response->send();
+            }
         }
     }
 
